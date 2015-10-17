@@ -22,11 +22,21 @@ def test_kill_service(hostname, port, thread_num)         # Function to test beh
   end
 end
 
-100.times do |i|
-  t = Thread.new do
-    test_kill_service(hostname, port, i)
+def test_HELO_text(hostname, port)
+  connection = TCPSocket.open(hostname, port)
+  connection.print("HELO text\n")
+  while response = connection.gets                            # Establishing a type of protocol
+    puts response.chop
   end
-  threads.push(t)
 end
+  
+test_HELO_text(hostname, port)
 
-threads.map(&:join)
+#100.times do |i|
+#  t = Thread.new do
+#    test_kill_service(hostname, port, i)
+#  end
+#  threads.push(t)
+#end
+
+#threads.map(&:join)
