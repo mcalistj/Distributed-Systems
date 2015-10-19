@@ -42,9 +42,9 @@ tp = ThreadPool.new(10)
 connectionNumber = 0
   
 hostname = '127.0.0.1'
-port = 8000
+port = ARGV[0]
 
-server = TCPServer.open(hostname, port)     # Socket to listen on port 8000
+server = TCPServer.open(hostname, port)     # Socket to listen on port ARGV[0] - First argument passed in
 loop {                                      # Servers run forever
   begin 
     client = server.accept                    # Wait for a client to connect
